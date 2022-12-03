@@ -16,14 +16,14 @@ export default function App() {
     { question: "Usamos props para __", answer: "Passar diferentes informações para componentes" },
     { question: "Usamos estado (state) para __", answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
   ]
-  const [totalQuestions, setTotalQuestions] = useState(cards.length)
-
+  const totalQuestions = cards.length
+  const [closed, setClosed] = useState([])
   return (
     <Container>
       <GlobalStyle />
       <Logo />
-      <Question cards={cards}/>
-      <Footer totalQuestions ={totalQuestions}/>
+      <Question cards={cards}  closed={closed} setClosed={setClosed}/>
+      <Footer totalQuestions ={totalQuestions} closed ={closed}/>
     </Container>
   );
 }

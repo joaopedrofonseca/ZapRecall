@@ -7,10 +7,9 @@ import almost from "./images/quase.png"
 import success from "./images/certo.png"
 
 
-export default function Question(p) {
+export default function Question({cards, closed, setClosed}) {
   const [selected, setSelected] = useState([])
   const [showAnswer, setShowAnswer] = useState([])
-  const [closed, setClosed] = useState([])
   const [noRemember, setNoRemember] = useState([])
   const [almostRemember, setAlmostRemember] = useState([])
   const [remembered, setRemembered] = useState([])
@@ -36,10 +35,11 @@ export default function Question(p) {
   }
   function closeQuestion(c) {
     setClosed([...closed, c])
+    console.log(closed)
   }
   return (
     <>
-      {p.cards.map((card, i) =>
+      {cards.map((card, i) =>
         <StyleQuestion selected={selected} closed={closed} card={card} noRemember={noRemember} almostRemember={almostRemember} remembered={remembered}>
           <p>{(!selected.includes(card) || closed.includes(card)) && `Pergunta ${i + 1}`}
             {(selected.includes(card) && !showAnswer.includes(card) && !closed.includes(card)) ? card.question : ''}

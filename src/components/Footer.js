@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export default function Footer(p) {
+export default function Footer({totalQuestions, closed}) {
+  let done = closed.length
     return (
         <StyleFooter>
-            0/{p.totalQuestions} CONCLUÍDOS
+            {closed.length}/{totalQuestions} CONCLUÍDOS
         </StyleFooter>
     )
 }
