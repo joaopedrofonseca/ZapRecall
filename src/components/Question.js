@@ -40,20 +40,20 @@ export default function Question({cards, closed, setClosed}) {
   return (
     <>
       {cards.map((card, i) =>
-        <StyleQuestion selected={selected} closed={closed} card={card} noRemember={noRemember} almostRemember={almostRemember} remembered={remembered}>
-          <p>{(!selected.includes(card) || closed.includes(card)) && `Pergunta ${i + 1}`}
+        <StyleQuestion data-test="flashcard" selected={selected} closed={closed} card={card} noRemember={noRemember} almostRemember={almostRemember} remembered={remembered}>
+          <p data-test="flashcard-text">{(!selected.includes(card) || closed.includes(card)) && `Pergunta ${i + 1}`}
             {(selected.includes(card) && !showAnswer.includes(card) && !closed.includes(card)) && card.question}
             {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && card.answer}
           </p>
           <div className="buttons">
-            {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton color='#FF3030' onClick={() => noRememberButton(card)}>Não lembrei</StyleButton>}
-            {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton color='#FF922E' onClick={() => almostRememberButton(card)}>Quase não lembrei</StyleButton>}
-            {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton color='#2FBE34' onClick={() => rememberedButton(card)}>Zap!</StyleButton>}
+            {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton data-test="no-btn"color='#FF3030' onClick={() => noRememberButton(card)}>Não lembrei</StyleButton>}
+            {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton data-test="partial-btn" color='#FF922E' onClick={() => almostRememberButton(card)}>Quase não lembrei</StyleButton>}
+            {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton data-test="zap-btn" color='#2FBE34' onClick={() => rememberedButton(card)}>Zap!</StyleButton>}
           </div>
-          {!(selected.includes(card) && showAnswer.includes(card) || closed.includes(card)) && <img src={(!selected.includes(card) || closed.includes(card)) ? play : flip} onClick={() => clickCard(card)} />}
-          <img src={(closed.includes(card) && noRemember.includes(card)) && error}/>
-          <img src={(closed.includes(card) && almostRemember.includes(card)) && almost}/>
-          <img src={(closed.includes(card) && remembered.includes(card)) && success}/>
+          {!(selected.includes(card) && showAnswer.includes(card) || closed.includes(card)) && <img data-test="play-btn" src={(!selected.includes(card) || closed.includes(card)) ? play : flip} onClick={() => clickCard(card)} />}
+          <img data-test="no-icon" src={(closed.includes(card) && noRemember.includes(card)) && error}/>
+          <img data-test="partial-icon" src={(closed.includes(card) && almostRemember.includes(card)) && almost}/>
+          <img data-test="zap-icon"   src={(closed.includes(card) && remembered.includes(card)) && success}/>
         </StyleQuestion>)}
     </>
   )

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Footer({totalQuestions, closed}) {
   let done = closed.length
     return (
-        <StyleFooter>
+        <StyleFooter data-test="footer">
             {closed.length}/{totalQuestions} CONCLUÍDOS
         </StyleFooter>
     )
