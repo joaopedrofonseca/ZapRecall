@@ -6,8 +6,8 @@ import error from "./images/erro.png"
 import almost from "./images/quase.png"
 import success from "./images/certo.png"
 
-
 export default function Question({cards, closed, setClosed}) {
+  //const [closed, setClosed] = useState([])
   const [selected, setSelected] = useState([])
   const [showAnswer, setShowAnswer] = useState([])
   const [noRemember, setNoRemember] = useState([])
@@ -42,15 +42,15 @@ export default function Question({cards, closed, setClosed}) {
       {cards.map((card, i) =>
         <StyleQuestion selected={selected} closed={closed} card={card} noRemember={noRemember} almostRemember={almostRemember} remembered={remembered}>
           <p>{(!selected.includes(card) || closed.includes(card)) && `Pergunta ${i + 1}`}
-            {(selected.includes(card) && !showAnswer.includes(card) && !closed.includes(card)) ? card.question : ''}
-            {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) ? card.answer : ''}
+            {(selected.includes(card) && !showAnswer.includes(card) && !closed.includes(card)) && card.question}
+            {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && card.answer}
           </p>
           <div className="buttons">
             {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton color='#FF3030' onClick={() => noRememberButton(card)}>Não lembrei</StyleButton>}
             {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton color='#FF922E' onClick={() => almostRememberButton(card)}>Quase não lembrei</StyleButton>}
             {(selected.includes(card) && showAnswer.includes(card) && !closed.includes(card)) && <StyleButton color='#2FBE34' onClick={() => rememberedButton(card)}>Zap!</StyleButton>}
           </div>
-          {!(selected.includes(card) && showAnswer.includes(card) || closed.includes(card)) ? <img src={(!selected.includes(card) || closed.includes(card)) ? play : flip} onClick={() => clickCard(card)} /> : ''}
+          {!(selected.includes(card) && showAnswer.includes(card) || closed.includes(card)) && <img src={(!selected.includes(card) || closed.includes(card)) ? play : flip} onClick={() => clickCard(card)} />}
           <img src={(closed.includes(card) && noRemember.includes(card)) && error}/>
           <img src={(closed.includes(card) && almostRemember.includes(card)) && almost}/>
           <img src={(closed.includes(card) && remembered.includes(card)) && success}/>
