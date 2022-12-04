@@ -7,14 +7,14 @@ import almost from "./images/quase.png"
 import success from "./images/certo.png"
 
 export default function Question({cards}) {
-  const [closed, setClosed] = useState([])
   const [selected, setSelected] = useState([])
   const [showAnswer, setShowAnswer] = useState([])
   const [noRemember, setNoRemember] = useState([])
   const [almostRemember, setAlmostRemember] = useState([])
   const [remembered, setRemembered] = useState([])
-  const totalQuestions = cards.length
+  const [closed, setClosed] = useState([])
 
+  const totalQuestions = cards.length
 
   function clickCard(c) {
     if (!selected.includes(c)) {
@@ -54,7 +54,7 @@ export default function Question({cards}) {
           {!(selected.includes(card) && showAnswer.includes(card) || closed.includes(card)) && <img data-test="play-btn" src={(!selected.includes(card) || closed.includes(card)) ? play : flip} onClick={() => clickCard(card)} />}
           <img data-test="no-icon" src={(closed.includes(card) && noRemember.includes(card)) && error}/>
           <img data-test="partial-icon" src={(closed.includes(card) && almostRemember.includes(card)) && almost}/>
-          <img data-test="zap-icon"   src={(closed.includes(card) && remembered.includes(card)) && success}/>
+          <img data-test="zap-icon" src={(closed.includes(card) && remembered.includes(card)) && success}/>
         </StyleQuestion>)}
         <StyleFooter data-test="footer">
             {closed.length}/{totalQuestions} CONCLUÍDOS
@@ -63,8 +63,6 @@ export default function Question({cards}) {
     </>
   )
 }
-
-
 const StyleQuestion = styled.div`
   width: 300px;
   height: ${props => (!props.selected.includes(props.card) || props.closed.includes(props.card)) && '35px'};
@@ -102,6 +100,7 @@ const StyleQuestion = styled.div`
   }
 `
 const StyleButton = styled.div`
+  font-family: 'Recursive';
   cursor:pointer;
   width: 85px;
   height: 37px;
