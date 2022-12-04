@@ -13,7 +13,6 @@ export default function Question({cards}) {
   const [almostRemember, setAlmostRemember] = useState([])
   const [remembered, setRemembered] = useState([])
   const [closed, setClosed] = useState([])
-
   const totalQuestions = cards.length
 
   function clickCard(c) {
@@ -59,7 +58,6 @@ export default function Question({cards}) {
         <StyleFooter data-test="footer">
             {closed.length}/{totalQuestions} CONCLUÍDOS
         </StyleFooter>
-
     </>
   )
 }

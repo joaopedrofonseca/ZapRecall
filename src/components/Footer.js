@@ -1,5 +1,4 @@
 import styled from "styled-components"
-
 export default function Footer({cards, closed}){
     const totalQuestions = cards.length
 
@@ -9,8 +8,6 @@ export default function Footer({cards, closed}){
         </StyleFooter>
     )
 }
-
-
 const StyleFooter = styled.div`
   width: 100%;
   min-height: 50px;
