@@ -1,6 +1,6 @@
 import { useState } from "react";
+import Flashcards from "./Flashcards";
 import Footer from "./Footer";
-import Question from "./Question";
 
 export default function Site() {
     const cards = [
@@ -16,9 +16,14 @@ export default function Site() {
     const [count, setCount] = useState(0)
     return (
         <>
-            <Question cards={cards} count={count} setCount={setCount}/>
+            {cards.map((card, index) => {
+                return(
+                    <>
+                    <Flashcards index={index} question={card.question} answer={card.answer} setCount={setCount} count={count}/>
+                    </>
+                )
+            })}
             <Footer cards={cards} count={count}></Footer>
         </>
     )
 }
-

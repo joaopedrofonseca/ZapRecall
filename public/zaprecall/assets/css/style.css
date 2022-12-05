@@ -91,9 +91,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
 
-.pergunta-fechada > p {
+
+p {
   font-family: 'Recursive';
   font-style: normal;
   font-weight: 700;
