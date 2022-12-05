@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Footer from "./Footer";
 import Question from "./Question";
 
 export default function Site() {
@@ -12,10 +13,11 @@ export default function Site() {
         { question: "Usamos props para __", answer: "Passar diferentes informações para componentes" },
         { question: "Usamos estado (state) para __", answer: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
     ]
-
+    const [count, setCount] = useState(0)
     return (
         <>
-            <Question cards={cards} />
+            <Question cards={cards} count={count} setCount={setCount}/>
+            <Footer cards={cards} count={count}></Footer>
         </>
     )
 }

@@ -1,10 +1,10 @@
 import styled from "styled-components"
-export default function Footer({cards, closed}){
+export default function Footer({cards, count}){
     const totalQuestions = cards.length
 
     return(
         <StyleFooter data-test="footer">
-            {closed.length}/{totalQuestions} CONCLUÍDOS
+            {count}/{totalQuestions} CONCLUÍDOS
         </StyleFooter>
     )
 }

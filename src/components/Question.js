@@ -6,15 +6,13 @@ import error from "./images/erro.png"
 import almost from "./images/quase.png"
 import success from "./images/certo.png"
 
-export default function Question({cards}) {
+export default function Question({cards, count, setCount}) {
   const [selected, setSelected] = useState([])
   const [showAnswer, setShowAnswer] = useState([])
   const [noRemember, setNoRemember] = useState([])
   const [almostRemember, setAlmostRemember] = useState([])
   const [remembered, setRemembered] = useState([])
   const [closed, setClosed] = useState([])
-  const totalQuestions = cards.length
-
   function clickCard(c) {
     if (!selected.includes(c)) {
       setSelected([...selected, c])
@@ -36,6 +34,7 @@ export default function Question({cards}) {
   }
   function closeQuestion(c) {
     setClosed([...closed, c])
+    setCount(count+1)
   }
   return (
     <>
@@ -55,9 +54,6 @@ export default function Question({cards}) {
           <img data-test="partial-icon" src={(closed.includes(card) && almostRemember.includes(card)) && almost}/>
           <img data-test="zap-icon" src={(closed.includes(card) && remembered.includes(card)) && success}/>
         </StyleQuestion>)}
-        <StyleFooter data-test="footer">
-            {closed.length}/{totalQuestions} CONCLUÍDOS
-        </StyleFooter>
     </>
   )
 }
@@ -109,43 +105,4 @@ const StyleButton = styled.div`
   justify-content: center;
   margin-left: 7px;
   background-color: ${props => props.color};
-`
-const StyleFooter = styled.div`
-  width: 100%;
-  min-height: 50px;
-  background-color: #FFFFFF;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Recursive';
-  font-weight: 400;
-  font-size: 18px;
-  color: #333333;
-  padding: 10px;
-  .container-buttons{
-    display: flex;
-  width: 80%;
-  justify-content: space-between;
-  margin: 20px;
-  }
-  .container-buttons > button {
-  width: 90px;
-  font-family: 'Recursive';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #FFFFFF;
-  background: blue;
-  border-radius: 5px;
-  border: 1px solid blue;
-  padding:5px;
-}
 `
